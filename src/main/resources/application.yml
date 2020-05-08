@@ -1,0 +1,12 @@
+server: 
+    port: 8081
+    address: 127.0.0.1
+spring: 
+  profiles: 
+    active: dev
+---
+server: 
+    port: 8082
+    address: 127.0.0.1
+spring: 
+  profiles: prod
