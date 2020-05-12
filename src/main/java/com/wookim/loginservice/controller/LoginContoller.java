@@ -1,11 +1,16 @@
 package com.wookim.loginservice.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.wookim.loginservice.domain.Users;
+import com.wookim.loginservice.repogitory.UserRepogitroy;
 import com.wookim.loginservice.response.JsonResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/wookim/login")
 public class LoginContoller<T> {
-
+    @Autowired UserRepogitroy userRepo;
     /**
      * GetMapping example
      * 
@@ -121,5 +126,28 @@ public class LoginContoller<T> {
         response.setHttpCode(HttpStatus.OK);
 
         return response;
+    }
+
+    /**
+     * @author wookim
+     * @since 2020.05.12
+     * @apiNote response 객체를 spring framework에서 제공하는 http respnse entity 사용하는 예
+     */
+    @RequestMapping(value = "/example/responseClass/getUserById", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    public @ResponseBody ResponseEntity<Users> getUserById(@RequestBody int id){
+        List<Users> user = userRepo.findAll();
+        return new ResponseEntity<Users>(user.get(id), HttpStatus.OK);
+    }
+
+        /**
+     * @author wookim
+     * @since 2020.05.12
+     * @apiNote *절대 이렇게 코딩하지 말것* 예제
+     *          User 정보를 받아 users Repogitory를 이용해 디비에 저장하는 로직 
+     */
+    @RequestMapping(value = "/example/responseClass/putUser", method = RequestMethod.POST, consumes = "application/json")
+    public @ResponseBody ResponseEntity<Users> putUser(@RequestBody Users user){
+        userRepo.save(user);
+        return new ResponseEntity(user,HttpStatus.OK);
     }
 }
