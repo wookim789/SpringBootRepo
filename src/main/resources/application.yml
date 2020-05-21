@@ -2,8 +2,14 @@ server:
     port: 8081
     address: 127.0.0.1
 spring: 
+  
   profiles: 
     active: dev
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: wookim
+    hikari.maximum-pool-size: 4
 ---
 server: 
     port: 8082
