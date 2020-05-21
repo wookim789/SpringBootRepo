@@ -4,18 +4,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import lombok.Builder;
 
 @Entity(name="users")
 public class Users {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     private String name;
-
     protected Users() {
         
     }
@@ -38,6 +36,4 @@ public class Users {
     public Long getId(){
         return this.id;
     }
-
-
 }

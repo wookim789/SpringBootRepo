@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Optional;
 
 import javax.xml.ws.Response;
-
 import com.wookim.loginservice.domain.Users;
 import com.wookim.loginservice.repogitory.UserRepogitroy;
 import com.wookim.loginservice.response.JsonResponse;
@@ -38,7 +37,6 @@ public class LoginContoller<T> {
     // 레포지토리를 컨트롤러에서 절대로 di 하지말것. 해당 빈객체는 service레이어에서 다룰것
     @Autowired
     UserRepogitroy userRepo;
-
     /**
      * GetMapping example
      * 
